@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CoinSender from '../../components/CoinSender'
 import './App.css'
 
-const App = () => {
+const App = ({ from }) => {
   return (
     <div className='App'>
       <CoinSender />
@@ -11,4 +11,8 @@ const App = () => {
   )
 }
 
-export default App;
+const mapStateToDispatch = state => ({
+  from: state.from
+})
+
+export default connect(mapStateToDispatch, null)(App);

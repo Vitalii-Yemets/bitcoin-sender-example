@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "mdbreact": "^4.8.2",
+    "mdbreact": "4.8.2",
     "react": "16.5.2",
     "react-dom": "16.5.2",
     "react-redux": "5.0.7",
     "react-scripts": "2.0.5",
-    "redux": "^4.0.1",
+    "redux": "4.0.1",
     "redux-observable": "1.0.0",
     "rxjs": "6.3.3"
   },
@@ -26,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "redux-devtools-extension": "2.13.5"
+  }
 }

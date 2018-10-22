@@ -1,5 +1,5 @@
-const AppState = {
-	from: '',
+const initialAppState = {
+	from: 'mysBqTUdJTLLw95x9eyc8QApFRkJXErD8R',
 	to: '',
 	amount: '',
 	fee: '',
@@ -8,4 +8,4 @@ const AppState = {
 	requestDetails: ''
 }
 
-export default AppState
+export default initialAppState
