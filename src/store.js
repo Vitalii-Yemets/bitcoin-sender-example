@@ -1,5 +1,5 @@
-import initialAppState from '../src/containers/App/initialState'
-import appReducer from './containers/App/reducer'
+import initialAppState from './initialState'
+import rootReducer from './containers/Root/reducer'
 
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -11,7 +11,7 @@ import logger from './logger'
 const middlewares = applyMiddleware(logger /*, epicMiddleware*/)
 
 const reducers = combineReducers({
-	appState: appReducer
+	rootState: rootReducer
 })
 
 const store = createStore(reducers, initialAppState, composeWithDevTools(middlewares))

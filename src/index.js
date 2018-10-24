@@ -7,11 +7,11 @@ import 'font-awesome/css/font-awesome.min.css'
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css'
 
-import App from '../src/containers/App'
+import Root from '../src/containers/Root'
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<Root />
 	</Provider>,
 	document.getElementById('root')
 )
