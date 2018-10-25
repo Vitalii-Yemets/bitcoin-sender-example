@@ -1,18 +1,55 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CoinSender from '../../components/CoinSender'
-import { setFrom, setTo, setAmount, setFee, sendMessage } from './actions'
+import {
+  setFrom,
+  setTo,
+  setAmount,
+  setFee,
+  sendMessage,
+  closeErrorModal,
+  closeSuccessModal
+} from './actions'
+import ErrorModal from '../../components/ErrorModal'
+import SuccessModal from '../../components/SuccessModal'
 import './Root.css'
 
 const Root = ({
+  from,
+  to,
+  amount,
+
   onFromChange,
   onToChange,
   onAmountChange,
   onFeeChange,
-  onSendMessage
+  onSendMessage,
+
+  onCloseErrorModal,
+  onCloseSuccessModal,
+
+  isShowSuccessModal,
+  isShowErrorModal,
+  requestDetails
 }) => {
 
+  const errorModalProps = {
+    onCloseErrorModal,
+    isShowErrorModal,
+    requestDetails
+  }
+
+  const successModalProps = {
+    onCloseSuccessModal,
+    isShowSuccessModal,
+    requestDetails
+  }
+
   const coinSenderProps = {
+    from,
+    to,
+    amount,
+
     onFromChange,
     onToChange,
     onAmountChange,
@@ -22,14 +59,25 @@ const Root = ({
 
   return (
     <div className='App'>
+      <ErrorModal {...errorModalProps} />
+      <SuccessModal {...successModalProps} />
       <CoinSender {...coinSenderProps} />
     </div>
   )
 }
 
+const mapStateToProps = state => ({
+  from: state.rootState.from,
+  to: state.rootState.to,
+  amount: state.rootState.amount,
+
+  isShowSuccessModal: state.rootState.isShowSuccessModal,
+  isShowErrorModal: state.rootState.isShowErrorModal,
+  requestDetails: state.rootState.requestDetails,
+})
+
 const mapDispatchToProps = dispatch => ({
   onFromChange: evt => {
-    debugger
     if (evt !== undefined && evt.preventDefault) {
       evt.preventDefault()
     }
@@ -53,7 +101,9 @@ const mapDispatchToProps = dispatch => ({
     }
     dispatch(setFee(evt.currentTarget.value))
   },
-  onSendMessage: () => dispatch(sendMessage())
+  onSendMessage: () => dispatch(sendMessage()),
+  onCloseErrorModal: () => dispatch(closeErrorModal()),
+  onCloseSuccessModal: () => dispatch(closeSuccessModal())
 })
 
-export default connect(null, mapDispatchToProps)(Root);
+export default connect(mapStateToProps, mapDispatchToProps)(Root);

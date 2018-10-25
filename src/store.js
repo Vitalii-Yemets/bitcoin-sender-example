@@ -4,11 +4,12 @@ import rootReducer from './containers/Root/reducer'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from './logger'
-// import { createEpicMiddleware, combineEpics } from 'redux-observable'
+import { sendMessageEpic } from './containers/Root/epics'
+import { createEpicMiddleware, combineEpics } from 'redux-observable'
 
-// const epicMiddleware = createEpicMiddleware()
+const epicMiddleware = createEpicMiddleware()
 
-const middlewares = applyMiddleware(logger /*, epicMiddleware*/)
+const middlewares = applyMiddleware(logger, epicMiddleware)
 
 const reducers = combineReducers({
 	rootState: rootReducer
@@ -16,8 +17,8 @@ const reducers = combineReducers({
 
 const store = createStore(reducers, initialAppState, composeWithDevTools(middlewares))
 
-// const combinedEpics = combineEpics( /* epicis will be here */)
+const combinedEpics = combineEpics(sendMessageEpic)
 
-// epicMiddleware.run(combinedEpics)
+epicMiddleware.run(combinedEpics)
 
 export default store

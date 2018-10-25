@@ -3,9 +3,13 @@ import {
 	TO_INPUT_CHANGE,
 	FEE_INPUT_CHANGE,
 	AMOUNT_INPUT_CHANGE,
+
 	SEND_MESSAGE,
 	SEND_MESSAGE_SUCCESS,
-	SEND_MESSAGE_ERROR
+	SEND_MESSAGE_ERROR,
+
+	CLOSE_ERROR_MODAL,
+	CLOSE_SUCCESS_MODAL
 } from './constants'
 
 export const setFrom = from => ({
@@ -32,14 +36,20 @@ export const sendMessage = () => ({
 	type: SEND_MESSAGE
 })
 
-
 export const sendMessageSuccess = requetsInfo => ({
 	type: SEND_MESSAGE_SUCCESS,
 	requetsDetails: requetsInfo
 })
 
-
 export const sendMessageError = requestErrorInfo => ({
 	type: SEND_MESSAGE_ERROR,
-	requetsDetails: requestErrorInfo
+	requestErrorInfo
+})
+
+export const closeErrorModal = () => ({
+	type: CLOSE_ERROR_MODAL
+})
+
+export const closeSuccessModal = () => ({
+	type: CLOSE_SUCCESS_MODAL
 })

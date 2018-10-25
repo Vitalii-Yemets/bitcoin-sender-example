@@ -3,9 +3,14 @@ import {
 	TO_INPUT_CHANGE,
 	AMOUNT_INPUT_CHANGE,
 	FEE_INPUT_CHANGE,
+
 	SEND_MESSAGE,
 	SEND_MESSAGE_SUCCESS,
-	SEND_MESSAGE_ERROR
+	SEND_MESSAGE_ERROR,
+
+	CLOSE_ERROR_MODAL,
+	CLOSE_SUCCESS_MODAL
+
 } from './constants'
 
 const rootReducer = (state = null, action) => {
@@ -51,9 +56,47 @@ const rootReducer = (state = null, action) => {
 		}
 
 		case SEND_MESSAGE_SUCCESS: {
+			debugger
 			const requestDetails = action.requestDetails
+			const isShowSuccessModal = true
+			const isSpinerShow = false
 			return {
 				...state,
+				requestDetails,
+				isShowSuccessModal,
+				isSpinerShow
+			}
+		}
+
+		case SEND_MESSAGE_ERROR: {
+			debugger
+			const requestDetails = action.requestErrorInfo
+			const isShowErrorModal = true
+			const isSpinerShow = false
+			return {
+				...state,
+				requestDetails,
+				isShowErrorModal,
+				isSpinerShow
+			}
+		}
+
+		case CLOSE_SUCCESS_MODAL: {
+			const isShowSuccessModal = false
+			const requestDetails = null
+			return {
+				...state,
+				isShowSuccessModal,
+				requestDetails
+			}
+		}
+
+		case CLOSE_ERROR_MODAL: {
+			const isShowErrorModal = false
+			const requestDetails = null
+			return {
+				...state,
+				isShowErrorModal,
 				requestDetails
 			}
 		}

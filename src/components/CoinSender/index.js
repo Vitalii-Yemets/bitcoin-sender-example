@@ -3,7 +3,11 @@ import { Input, Button } from 'mdbreact'
 
 import './CoinSender.css'
 
-const CoinSender = ({	
+const CoinSender = ({
+	from,
+	to,
+	amount,
+
 	onFromChange,
 	onToChange,
 	onAmountChange,
@@ -13,9 +17,9 @@ const CoinSender = ({
 
 	return (
 		<div className='CoinSender'>
-			<Input id='From' label='From' name='From' size='sm' onChange={onFromChange} />
-			<Input id='To' label='To' name='To' size='sm' onChange={onToChange} />
-			<Input id='Amount' label='Amount' name='Amount' size='sm' onChange={onAmountChange} />
+			<Input id='From' label='From' name='From' size='sm' value={from} onChange={onFromChange} />
+			<Input id='To' label='To' name='To' size='sm' value={to} onChange={onToChange} />
+			<Input id='Amount' label='Amount' name='Amount' size='sm' value={amount} onChange={onAmountChange} />
 			<Input id='Fee' label='Fee' name='Fee' size='sm' onChange={onFeeChange} />
 			<Button onClick={onSendMessage}>
 				send
